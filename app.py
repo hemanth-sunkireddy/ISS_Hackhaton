@@ -56,7 +56,6 @@ def signin():
             # # Password is correct, so store the user's ID in the session
             # session['user_id'] = user[1]
             c.execute("INSERT INTO currentuser (name, ROLLNO,password,number) VALUES (?, ?,?,?)", (user[0], student_rollno,user[3],student_password))
-            flash('Logged in successfully.')
             # return redirect(url_for('dashboard'))
             return render_template('homepage.html')
         else:
