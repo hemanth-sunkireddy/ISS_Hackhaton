@@ -11,27 +11,29 @@
 
 <header>
 	<h1>
-		Header of the website
+		Title
     </h1>
 </header>
 
 
-<h2>Welcome to the Lost and sell and found website</h2>
+<!-- <h2>Welcome to IIIT Hyderabad's Lost and Found Portal</h2>
+<br>
+<h3>Enter Your Details To Get Started</h3> -->
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
         <form method="POST" action="/signup">
             <h1>Create Account</h1>
             <input type="text" id="name" name="name" placeholder="Name">
-            <input type="number" id="rollno" name="rollNo" placeholder="Roll No">
-            <input type="number" id="rollno" name="mobile" placeholder="Mobile number">
-            <input type="number" id="rollno" name="password" placeholder="Password">
+            <input type="text" id="no" name="rollNo" placeholder="Roll No">
+            <input type="text" id="phone" name="mobile" placeholder="Mobile number">
+            <input type="password" id="pass" name="password" placeholder="Password">
             <input type="submit" value="Submit">
 	    </form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form method="POST" action="/signin">
 			<h1>Sign in</h1>
-			<input type="text" placeholder="Roll NO" name="rollNo"/>
+			<input type="text" placeholder="Roll Number" name="rollNo"/>
 			<input type="password" placeholder="Password" name="password"/>
 			<input type="submit" value="Submit">
 		</form>
@@ -40,28 +42,18 @@
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">
 				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
+				<p>Please login with your personal info.</p>
 				<button class="ghost" id="signIn">Sign In</button>
 			</div>
 			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
+				<h1>Welcome to IIIT Hyderabad's Lost and Found Portal!</h1>
+				<p>Enter Your Details To Get Started</p>
 				<button class="ghost" id="signUp">Sign Up</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-
-
-
-
-<footer>
-	<p>
-		&copy; Copywright 2023
-	</p>
-</footer>
     <script src="../static/js/index.js">
 
     </script>
