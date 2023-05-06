@@ -19,23 +19,22 @@
 <h2>Welcome to the Lost and sell and found website</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form method="POST" action="/signup">
-			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" name="name"/>
-			<input type="number" placeholder="Roll No" name="rollNo"/>
-			<input type="password" placeholder="Password" name="password"/>
-            <input type="number" placeholder="Mobile Number" name="mobile"/>
-			<button onClick="signup()">Sign Up</button>
-		</form>
+        <form method="POST" action="/signup">
+            <h1>Create Account</h1>
+            <input type="text" id="name" name="name" placeholder="Name">
+            <input type="number" id="rollno" name="rollNo" placeholder="Roll No">
+            <input type="number" id="rollno" name="mobile" placeholder="Mobile number">
+            <input type="number" id="rollno" name="password" placeholder="Password">
+            <input type="submit" value="Submit">
+	    </form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form method="POST" action="/signin">
 			<h1>Sign in</h1>
-			
 			<input type="text" placeholder="Roll NO" name="rollNo"/>
 			<input type="password" placeholder="Password" name="password"/>
 			<a href="#">Forgot your password?</a>
-			<button onClick="signin()">Sign In</button>
+			<input type="submit" value="Submit">
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -53,6 +52,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 
 
 <footer>
