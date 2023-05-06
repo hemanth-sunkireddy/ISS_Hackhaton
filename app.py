@@ -1,24 +1,26 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, url_for, redirect,flash
 import sqlite3
 from datetime import datetime
+import os
+os.urandom(24)
+
 
 app = Flask(__name__)
-
+app.secret_key = "your_secret_key"
 
 
 
 def create_table():
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS users (name TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT,password TEXT, number TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS sale (name TEXT, description TEXT, price TEXT, rollno TEXT, status TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS lost (name TEXT, colourmodel TEXT, description TEXT, rollno TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS users (name TEXT, ROLLNO INTEGER PRIMARY KEY ,password TEXT, number TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS currentuser (name TEXT, ROLLNO TEXT,password TEXT, number TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS sale (name TEXT, description TEXT, price TEXT, rollno TEXT, status TEXT, user TEXT, mobile TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS lost (name TEXT, colourmodel TEXT, description TEXT, status TEXT, rollno TEXT, user TEXT, mobile TEXT)")
     conn.commit()
     conn.close()
 
 create_table()
-
-
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -29,39 +31,61 @@ def signup():
         student_password=request.form['password']
         conn = sqlite3.connect('lfs.db')
         c = conn.cursor()
-        c.execute("INSERT INTO users (name, id,password,number) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
+        c.execute("DELETE FROM currentuser;")
+        c.execute("INSERT INTO users (name, ROLLNO,number,password) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
+        c.execute("INSERT INTO currentuser (name, ROLLNO,number,password) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
         conn.commit()
         conn.close()
         return render_template('homepage.html')
     
-
 
 @app.route('/signin', methods=['POST', 'GET'])
 def signin():
     if request.method == "POST":
         student_rollno=request.form['rollNo']
         student_password=request.form['password']
-        print(student_password)
-        print(student_rollno)
-        return render_template('homepage.html')
+        conn = sqlite3.connect('lfs.db')
+        c = conn.cursor()
+        c.execute("DELETE FROM currentuser;")
+        c.execute("SELECT * FROM users WHERE ROLLNO = ?", (student_rollno,))
+        user = c.fetchone()
+        if user is None:
+            flash('Incorrect username.')
+            return redirect(url_for('signin'))
+        if student_password == user[2]:
+            # # Password is correct, so store the user's ID in the session
+            # session['user_id'] = user[1]
+            c.execute("INSERT INTO currentuser (name, ROLLNO,password,number) VALUES (?, ?,?,?)", (user[0], student_rollno,user[3],student_password))
+            flash('Logged in successfully.')
+            # return redirect(url_for('dashboard'))
+            return render_template('homepage.html')
+        else:
+            # Password is incorrect, so show an error message
+            flash('Incorrect password.')
+            return render_template('index.html')
+        # conn.close()
+        # print(student_password)
+        # print(student_rollno)
 
 
 @app.route('/')
 def index3():
     return render_template('index.html')
 
-
 @app.route('/submit', methods=['POST'])
 def submit():
-   
     name = request.form['name']
     description = request.form['description']
     price=request.form['price']
     action=request.form['action']
-
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
-    c.execute("INSERT INTO sale (name, description, price, status) VALUES (?, ?, ?, ?)", (name, description, price, 0 if action=='Sell' else 1 if action=='Lend' else 2))
+    c.execute("SELECT * FROM currentuser")
+    current_user = c.fetchone()
+    rollno = current_user[1]
+    user=current_user[0]
+    mobile=current_user[3]
+    c.execute("INSERT INTO sale (name, description, price, rollno, user, mobile, status) VALUES (?, ?, ?, ?, ?, ?, ?)", (name, description, price, rollno, user, mobile, 0 if action=='Sell' else 1 if action=='Lend' else 2))
     conn.commit()
     conn.close()
     return render_template('sell.html')
@@ -73,42 +97,70 @@ def submit1():
     name = request.form['name']
     description = request.form['description']
     colourmodel=request.form['colourmodel']
-
+    action=request.form['action']
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
-    c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
+    c.execute("SELECT * FROM currentuser")
+    current_user = c.fetchone()
+    rollno = current_user[1]
+    user=current_user[0]
+    mobile=current_user[3]
+    c.execute("INSERT INTO lost (name, description, colourmodel, rollno, user, mobile, status) VALUES (?, ?, ?, ?, ?, ?, ?)", (name, description,colourmodel,rollno,user,mobile, 0 if action=='Lost' else 1))
     conn.commit()
     conn.close()
-    return render_template('foundAdd.html')
+    return render_template('lostfoundAdd.html')
 
 
-@app.route('/submit2', methods=['POST'])
-def submit2():
-    name = request.form['name']
-    description = request.form['description']
-    colourmodel=request.form['colourmodel']
+# @app.route('/submit2', methods=['POST'])
 
-    conn = sqlite3.connect('lfs.db')
-    c = conn.cursor()
-    c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
-    conn.commit()
-    conn.close()
-    return render_template('lostAdd.html')
+# def submit2():
+#     name = request.form['name']
+#     description = request.form['description']
+#     colourmodel=request.form['colourmodel']
+
+#     conn = sqlite3.connect('lfs.db')
+#     c = conn.cursor()
+#     c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
+#     conn.commit()
+#     conn.close()
+#     return render_template('lostAdd.html')
 
 # Form for adding the items to sell
 @app.route('/sell.html')
 def sell():
     return render_template('sell.html')
 
+#  c.execute("CREATE TABLE IF NOT EXISTS users (name TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT,password TEXT, number TEXT)")
+#     c.execute("CREATE TABLE IF NOT EXISTS sale (name TEXT, description TEXT, price TEXT, rollno TEXT, status TEXT)")
+
 # List of Items up for buying or borrowing
 @app.route('/buy.html')
 def buy():
-    return render_template('buy.html')
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM sale WHERE status != 1")
+    rows = c.fetchall()
+    conn.close()
+    return render_template('buy.html',rows=rows)
+
+@app.route('/borrow.html')
+def borrow():
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM sale WHERE status != 0")
+    rows = c.fetchall()
+    conn.close()
+    return render_template('borrow.html',rows=rows)
 
 # List of Items which are found
 @app.route('/foundView.html')
 def foundView():
-    return render_template('foundView.html')
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM lost WHERE status != 0")
+    rows = c.fetchall()
+    conn.close()
+    return render_template('foundView.html', rows=rows)
 
 @app.route('/successFoundAdd.html', methods=['POST', 'GET'])
 def successFoundAdd():
@@ -127,14 +179,19 @@ def foundAdd():
 # List of Items which are lost
 @app.route('/lostView.html')
 def lostView():
-    return render_template('/lostView.html')
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM lost WHERE status != 1")
+    rows = c.fetchall()
+    conn.close()
+    return render_template('/lostView.html', rows=rows)
 
 @app.route('/homepage.html')
-def borrow():
+def home():
     return render_template('homepage.html')
 
 @app.route('/studentProfile.html')
-def borrow23():
+def profile():
     return render_template('studentProfile.html')
 
 if __name__ == '__main__':
