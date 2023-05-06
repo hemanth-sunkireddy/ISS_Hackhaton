@@ -48,7 +48,7 @@ def signin():
 
 @app.route('/')
 def index():
-    return render_template('sell.html')
+    return render_template('index.html')
 
 
 @app.route('/submit', methods=['POST'])
@@ -79,7 +79,7 @@ def submit1():
     c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
     conn.commit()
     conn.close()
-    return render_template('found.html')
+    return render_template('foundAdd.html')
 
 
 @app.route('/submit2', methods=['POST'])
@@ -93,7 +93,7 @@ def submit2():
     c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
     conn.commit()
     conn.close()
-    return render_template('lost.html')
+    return render_template('lostAdd.html')
 
 @app.route('/view.html')
 def view():
