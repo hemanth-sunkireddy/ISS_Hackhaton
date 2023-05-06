@@ -1,13 +1,76 @@
+<!DOCTYPE html>
 <html>
-    <body>
-       <h1>What do you want to Buy Today?</h1>
+<head>
+	<meta charset="UTF-8">
+	<title>Items For Sale</title>
+	<style>
+		h1{
+  font-size: 90px;
+  color: #fff;
+  border-color: #fff;
+  border-style: solid;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: monospace;
+}
+table{
+  width:100%;
+  table-layout: fixed;
+  font-family: monospace;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 8px solid rgba(255,255,255,0.3);
+}
+th{
+  padding: 20px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 33px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: center;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 23px;
+  color: #fff;
+  border-bottom: solid 8px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+
+body{
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: 'Roboto', sans-serif;
+}
+section{
+  margin: 50px;
+}
+
+	</style>
+</head>
+<body>
+	<h1>Items For Sale</h1>
 	<table class="playlist">
 		<thead>
 			<tr>
 				<th>Name</th>
 				<th>Description</th>
 				<th>Price</th>
-                <th>Owner's Id</th>
+				<th>Owner's Id</th>
 				<th>Owner's Name</th>
 				<th>Contact No.</th>
 			</tr>
@@ -18,12 +81,12 @@
 					<td>{{ row[0] }}</td>
 					<td>{{ row[1] }}</td>
 					<td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
+					<td>{{ row[3] }}</td>
 					<td>{{ row[5] }}</td>
-                    <td>{{ row[6] }}</td>
+					<td>{{ row[6] }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-    </body>
+</body>
 </html>
