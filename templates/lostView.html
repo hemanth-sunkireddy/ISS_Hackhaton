@@ -1,6 +1,32 @@
 <html>
-    <body>
-        This is the found database. if you didnt found lost someone then just add it. 
-        <a href="/lostAdd.html"><button>If you dont get loss details then add</button></a>
-    </body>
+
+<body>
+  <h1>What have you Lost ??</h1>
+  <table class="playlist">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Colour / Model</th>
+        <th>Description</th>
+        <th>Owner's Id</th>
+        <th>Owner's Name</th>
+        <th>Contact No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[6] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="lostfoundAdd.html"><button class="button-51" role="button">NOT HERE!</button></a>
+</body>
+
 </html>
