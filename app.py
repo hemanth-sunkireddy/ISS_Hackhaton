@@ -32,7 +32,7 @@ def signup():
         c.execute("INSERT INTO users (name, id,password,number) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
         conn.commit()
         conn.close()
-        render_template('homepage.html')
+        return render_template('homepage.html')
     
 
 
@@ -43,11 +43,11 @@ def signin():
         student_password=request.form['password']
         print(student_password)
         print(student_rollno)
-        render_template('homepage.html')
+        return render_template('homepage.html')
 
 
 @app.route('/')
-def index():
+def index3():
     return render_template('index.html')
 
 
@@ -134,7 +134,7 @@ def borrow():
     return render_template('homepage.html')
 
 @app.route('/studentProfile.html')
-def borrow():
+def borrow23():
     return render_template('studentProfile.html')
 
 if __name__ == '__main__':
