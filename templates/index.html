@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+
+
+
+
+<body>
+
+<header>
+	<h1>
+		Header of the website
+    </h1>
+</header>
+
+
+<h2>Welcome to the Lost and sell and found website</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form method="POST" action="/signup">
+			<h1>Create Account</h1>
+			<input type="text" placeholder="Name" name="name"/>
+			<input type="number" placeholder="Roll No" name="rollNo"/>
+			<input type="password" placeholder="Password" name="password"/>
+            <input type="number" placeholder="Mobile Number" name="mobile"/>
+			<button onClick="signup()">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form method="POST" action="/signin">
+			<h1>Sign in</h1>
+			
+			<input type="text" placeholder="Roll NO" name="rollNo"/>
+			<input type="password" placeholder="Password" name="password"/>
+			<a href="#">Forgot your password?</a>
+			<button onClick="signin()">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer>
+	<p>
+		&copy; Copywright 2023
+	</p>
+</footer>
+    <script src="../static/js/index.js">
+
+    </script>
+</body>
+</html>
