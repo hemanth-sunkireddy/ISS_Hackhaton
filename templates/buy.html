@@ -1,5 +1,29 @@
 <html>
     <body>
-        Hi this is buy page
+       <h1>What do you want to Buy Today?</h1>
+	<table class="playlist">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+                <th>Owner's Id</th>
+				<th>Owner's Name</th>
+				<th>Contact No.</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in rows %}
+				<tr>
+					<td>{{ row[0] }}</td>
+					<td>{{ row[1] }}</td>
+					<td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+					<td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
     </body>
 </html>
