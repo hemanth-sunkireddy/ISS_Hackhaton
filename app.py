@@ -67,14 +67,36 @@ def buy():
     return render_template('buy.html')
 
 
-@app.route('/found.html')
-def found():
-    return render_template('found.html')
+@app.route('/foundView.html')
+def foundView():
+    return render_template('foundView.html')
+
+@app.route('/successFoundAdd.html', methods=['POST', 'GET'])
+def successFoundAdd():
+    if request.method == "POST":
+        return "Added successfully"
+
+
+@app.route('/foundAdd.html')
+def foundAdd():
+    return render_template('foundAdd.html')
+
+@app.route('/lostAdd.html')
+def lostAdd():
+    return render_template('lostAdd.html')
+
+
+@app.route('/lostView.html')
+def lostView():
+    return render_template('/lostView.html')
 
 
 @app.route('/borrow.html')
 def borrow():
     return render_template('borrow.html')
+
+
+
 
 
 
