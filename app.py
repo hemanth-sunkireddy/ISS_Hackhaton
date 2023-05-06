@@ -95,25 +95,17 @@ def submit2():
     conn.close()
     return render_template('lostAdd.html')
 
-@app.route('/view.html')
-def view():
-    return render_template('view.html')
-
-
-@app.route('/lost.html')
-def loss():
-    return render_template('lost.html')
-
+# Form for adding the items to sell
 @app.route('/sell.html')
 def sell():
     return render_template('sell.html')
 
-
+# List of Items up for buying or borrowing
 @app.route('/buy.html')
 def buy():
     return render_template('buy.html')
 
-
+# List of Items which are found
 @app.route('/foundView.html')
 def foundView():
     return render_template('foundView.html')
@@ -123,23 +115,27 @@ def successFoundAdd():
     if request.method == "POST":
         return "Added successfully"
 
-
-@app.route('/foundAdd.html')
+# Form for adding the items which are lost/found  
+@app.route('/lostfoundAdd.html')
 def foundAdd():
-    return render_template('foundAdd.html')
+    return render_template('lostfoundAdd.html')
 
-@app.route('/lostAdd.html')
-def lostAdd():
-    return render_template('lostAdd.html')
+# @app.route('/lostAdd.html')
+# def lostAdd():
+#     return render_template('lostAdd.html')
 
-
+# List of Items which are lost
 @app.route('/lostView.html')
 def lostView():
     return render_template('/lostView.html')
 
-
-@app.route('/borrow.html')
+@app.route('/homepage.html')
 def borrow():
-    return render_template('borrow.html')
+    return render_template('homepage.html')
+
+@app.route('/studentProfile.html')
+def borrow():
+    return render_template('studentProfile.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
