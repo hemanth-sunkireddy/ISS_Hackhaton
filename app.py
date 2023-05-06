@@ -51,7 +51,7 @@ def signin():
         user = c.fetchone()
         if user is None:
             flash('Incorrect username.')
-            return redirect(url_for('signin'))
+            return render_template('index.html')
         if student_password == user[2]:
             # # Password is correct, so store the user's ID in the session
             # session['user_id'] = user[1]
