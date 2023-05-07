@@ -1,7 +1,7 @@
 # theRetrieval_Zone@iiit
 
-NOTE: This website must be run on the terminal using the command "python3 app.py". This starts the flask application. The link thus generated directs to the sign-in page from which the user can access all the functionalities of the website.  
-
+NOTE: The application is submitted in the form of a zip file. The user must extract the files and then run it on the terminal using the command 
+"python3 app.py". This starts the flask application. The link thus generated directs to the sign-in page from which the user can access all the functionalities of the website.  
 
 
 
