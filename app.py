@@ -110,27 +110,36 @@ def submit1():
     return render_template('lostfoundAdd.html')
 
 
-# @app.route('/submit2', methods=['POST'])
+@app.route('/submit2', methods=['POST'])
 
-# def submit2():
-#     name = request.form['name']
-#     description = request.form['description']
-#     colourmodel=request.form['colourmodel']
+def submit2():
+    name = request.form['name']
+    description = request.form['description']
+    colourmodel=request.form['colourmodel']
+    action=request.form['action']
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM currentuser")
+    current_user = c.fetchone()
+    rollno = current_user[1]
+    user=current_user[0]
+    mobile=current_user[3]
+    c.execute("INSERT INTO lost (name, description, colourmodel, rollno, user, mobile, status) VALUES (?, ?, ?, ?, ?, ?, ?)", (name, description,colourmodel,rollno,user,mobile, 0 if action=='Lost' else 1))
+    conn.commit()
+    conn.close()
+    return render_template('lostfoundAdd.html')
 
-#     conn = sqlite3.connect('lfs.db')
-#     c = conn.cursor()
-#     c.execute("INSERT INTO lost (name, description, colourmodel) VALUES (?, ?, ?)", (name, description,colourmodel))
-#     conn.commit()
-#     conn.close()
-#     return render_template('lostAdd.html')
+
+
+
+
 
 # Form for adding the items to sell
 @app.route('/sell.html')
 def sell():
     return render_template('sell.html')
 
-#  c.execute("CREATE TABLE IF NOT EXISTS users (name TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT,password TEXT, number TEXT)")
-#     c.execute("CREATE TABLE IF NOT EXISTS sale (name TEXT, description TEXT, price TEXT, rollno TEXT, status TEXT)")
+
 
 # List of Items up for buying or borrowing
 @app.route('/buy.html')
@@ -161,10 +170,7 @@ def foundView():
     conn.close()
     return render_template('foundView.html', rows=rows)
 
-@app.route('/successFoundAdd.html', methods=['POST', 'GET'])
-def successFoundAdd():
-    if request.method == "POST":
-        return "Added successfully"
+
 
 # Form for adding the items which are lost/found  
 @app.route('/lostfoundAdd.html')
@@ -194,8 +200,9 @@ def studentProfile():
 
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
+
     c.execute("SELECT * FROM currentuser")
-    unique_rollID = c.fetchone()[2]
+    unique_rollID = c.fetchone()[1]
     c.execute("SELECT * FROM users WHERE ROLLNO = ?", (unique_rollID,))
     user_details=c.fetchall()
     print(user_details)
@@ -217,8 +224,15 @@ def studentProfile():
 
 
 
-
-
+@app.route('/remove-from-sell', methods=['POST'])
+def remove_from_sell():
+    song_id = request.json['name']
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM sale WHERE name=?", (song_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'success': True})
 
 if __name__ == '__main__':
     app.run(debug=True)
