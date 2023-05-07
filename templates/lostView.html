@@ -1,110 +1,101 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Grid Layout Example</title>
-	<style>
-        .container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    /* two rows with equal height */
-    grid-template-columns: 1fr 1fr;
-    /* two columns with equal width */
-    gap: 20px;
-    /* gap between grid cells */
-}
-
-/* styling for grid cells */
-.cell {
-    background-color: #ddd;
-    padding: 20px;
-    text-align: center;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 70px;
-    overflow: hidden;
-    background-color: lightblue;
-}
-
-li {
-    float: right;
-    padding: left 19px;
-    margin-top: 0 20px;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-li a:hover {
-    background-color: burlywood;
-}
-body{
-	  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-	  background: linear-gradient(to right, #25c481, #25b7c4);
-	  font-family: 'Roboto', sans-serif;
+    <body>
+		<title>Lost Items</title>
+		<link rel="stylesheet" href="../static/css/navbar.css">
+		<style>
+			h1{
+	  font-size: 90px;
+	  color: black;
+	  border-color: #fff;
+	  border-style: solid;
+	  text-transform: uppercase;
+	  font-weight: 300;
+	  text-align: center;
+	  margin-bottom: 15px;
+	  font-family: monospace;
 	}
-    </style>
-</head>
-<body>
+	table{
+	  width:100%;
+	  table-layout: fixed;
+	  font-family: monospace;
+	}
+	.tbl-header{
+	  background-color: black;
+	 }
+	.tbl-content{
+	  height:300px;
+	  overflow-x:auto;
+	  margin-top: 0px;
+	  border: 8px solid black;
+	}
+	th{
+	  padding: 20px 15px;
+	  text-align: center;
+	  font-weight: 500;
+	  font-size: 31px;
+	  color: black;
+	  text-transform: uppercase;
+	}
+	td{
+	  padding: 15px;
+	  text-align: center;
+	  vertical-align:middle;
+	  font-weight: 300;
+	  font-size: 23px;
+	  color: black;
+	  border-bottom: solid 8px rgba(255,255,255,0.1);
+	}
+	
+	
+body{
+	background-color:#D2DAC2;
+}
 
- 
-<ul>
-  <li><a class="active" href="/studentProfile.html">USERPAGE</a></li>
-  <li><a href="/foundView.html">FOUND</a></li>
-  <li><a href="/sell.html">SELL</a></li>
-  <li><a href="/borrow.html">BORROW</a></li>
-  <li><a href="/buy.html">BUY</a></li>
-  
-</ul>
-    
 
-    
-	<div class="container" style="margin-left:30%;">
-    
-		<div class="cell" style="background-color: aquamarine; margin-top:50px; margin-right:20px; margin-left:20px;">
-      <h1>Founded items</h1>
-     <center> <table border="2" cellpadding="20">
-        <thead>
-         <th>Name</th>
-          <th>Colour / Model</th>
-          <th>Description</th>
-          <th>Owner's Id</th>
-          <th>Owner's Name</th>
-          <th>Contact No.</th>
-          
-        </thead>
-        <tbody>
-          
-           {% for row in row %}
-                <tr>
+	section{
+	  margin: 50px;
+	}
+  .button-51:hover {
+      background-color: #25c481;
+      color: #fff;
+    }
+	</style>
+		<ul>
+			<img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
+			<li><a href="/lostView.html" a class="active">LOST</a></li>
+			<li><a href="/foundView.html" >FOUND</a></li>
+			<li><a href="/sell.html">SELL</a></li>
+			<li><a href="/borrow.html">BORROW</a></li>
+			<li><a href="/buy.html" >BUY</a></li>
+			<li><a href="/studentProfile.html"  >PROFILE</a></li>
+			<li><a href="/homepage.html" >HOME</a></li>
+		  </ul>
+       <h1>Lost Items</h1>
+	<table class="playlist">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+        <th>Finder's Id</th>
+				<th>Finder's Name</th>
+				<th>Contact No.</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in rows %}
+				<tr>
 					<td>{{ row[0] }}</td>
 					<td>{{ row[1] }}</td>
-                    <td>{{ row[3] }}</td>
+         <td>{{ row[3] }}</td>
 					<td>{{ row[5] }}</td>
-                    <td>{{ row[6] }}</td>
+          <td>{{ row[6] }}</td>
 				</tr>
-            {% endfor %}
-          
-        </tbody>
-      </center>
-      </table>
-    </div>
-    <br />
-
-    <a href="/lostfoundAdd.html" style="text-decoration: none; font-size:30px; margin-left:150px;">If you cannot found, Click here</a>
-
-</body>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div style="text-align:center;margin-top:30px;">
+		<a href="lostfoundAdd.html">
+			<button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;">NOT HERE!</button>
+		</a>
+    </body>
 </html>
-
-
-
