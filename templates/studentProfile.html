@@ -8,15 +8,25 @@
 
  
 <ul>
-  <li><a class="active" href="/lostView.html">LOST</a></li>
+  <img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
+  <li><a href="/lostView.html">LOST</a></li>
   <li><a href="/foundView.html">FOUND</a></li>
   <li><a href="/sell.html">SELL</a></li>
   <li><a href="/borrow.html">BORROW</a></li>
   <li><a href="/buy.html">BUY</a></li>
+  <li><a href="/studentProfile.html" a class="active" >PROFILE</a></li>
+  <li><a href="/homepage.html" >HOME</a></li>
+ 
   
 </ul>
 
-  <div class="cell" style="margin-top:130px; margin-bottom:50px; width:50%; margin-left:20%;font-family: monospace;"> 
+<style>
+  body{
+	background-color:#D2DAC2;
+}
+</style>
+
+  <div class="cell" style=" margin-top:130px; margin-bottom:50px; width:50%; margin-left:20%;font-family: monospace;"> 
       <h1>
         Student Details
       </h1>
@@ -33,11 +43,11 @@
   
 	<div class="container">
     
-		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
+		<div class="cell" style="background-color:#adcc6e;margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
       <h1>Items Lost</h1>
       {% if lost %}
      <center> 
-      <table border="2" cellpadding="20">
+      <table border="2" style="border-color:black;"  cellpadding="20">
         <thead>
           <th>
            Name
@@ -65,18 +75,20 @@
         </tbody>
       </center>
       {% else %}
-    <p style="font-size: 15px;">Nothing Added Yet!</p>
+      <div style="display:flex;justify-content:center;">
+        <p style="font-size: 15px; text-align:center;">Nothing Added Yet!</p>
+      </div>
   {% endif %}
       </table>
     </div>
 
 
 
-    <div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
+    <div class="cell" style="background-color:#adcc6e; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
       <h1>Items Found</h1>
-     <center> <table border="2" cellpadding="20" >
+     <center> <table border="2" style="border-color:black;" cellpadding="20" >
       {% if found %}
-        <thead>
+        <thead style="font-size:20px;">
           <th>
             Name
           </th>
@@ -89,7 +101,7 @@
         </thead>
         <tbody>
           {% for found in found %}
-          <tr>
+          <tr style="font-size:15px;">
             <td>{{ found[0] }}</td>
             <td>{{ found[1] }}</td>
             <td>{{ found[2] }}</td>
@@ -100,7 +112,9 @@
         </tbody>
   </center>
   {% else %}
-<p style="font-size: 15px;">Nothing Added Yet!</p>
+  <div style="display:flex;justify-content:center;">
+    <p style="font-size: 15px; text-align:center;">Nothing Added Yet!</p>
+  </div>
 {% endif %}
 </table> 
     </div>
@@ -118,9 +132,9 @@
 
 
 
-		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
+		<div class="cell" style="background-color:#adcc6e; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
       <h1>Items Up For Sale</h1>
-     <center> <table border="2" cellpadding="20">
+     <center> <table border="2" style="border-color:black;"  cellpadding="20">
       {% if sell %}
         <thead>
           <th>
@@ -147,18 +161,20 @@
       
     </center>  
     {% else %}
-    <p style="font-size: 15px;">Nothing Added Yet!</p>
+    <div style="display:flex;justify-content:center;">
+      <p style="font-size: 15px; text-align:center;">Nothing Added Yet!</p>
+    </div>
     {% endif %}
   </table>
     </div>
     
-		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
+		<div class="cell" style="background-color:#adcc6e;margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
       <h1>
         Items Up For Hire
       </h1>
       {% if buy %}
       <center>
-      <table border="2" cellpadding="20">
+      <table border="2"  style="border-color:black;"  cellpadding="20">
         <thead>
           <th>
             Name 
@@ -169,8 +185,8 @@
         </thead>
         <tbody>
            {% for buy in buy %}
-          <tr>
-            <td>{{ buy[0] }}</td>
+          <tr style="font-size:15px;">
+            <td >{{ buy[0] }}</td>
             <td>{{ buy[1] }}</td>
             <td><button class="remove-button" onclick="removeSell('{{ buy[0] }}')">Remove</button></td>
           </tr>
@@ -180,7 +196,9 @@
       
       </center>
       {% else %}
-      <p style="font-size: 15px;">Nothing Added Yet!</p>
+      <div style="display:flex;justify-content:center;">
+        <p style="font-size: 15px; text-align:center;">Nothing Added Yet!</p>
+      </div>
       {% endif %}
     </table>
     </div>
