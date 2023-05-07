@@ -71,6 +71,7 @@ body{
 			<li><a href="/homepage.html" >HOME</a></li>
 		  </ul>
        <h1>Lost Items</h1>
+	   {% if rows %}
 	<table class="playlist">
 		<thead>
 			<tr>
@@ -89,13 +90,18 @@ body{
          <td>{{ row[3] }}</td>
 					<td>{{ row[5] }}</td>
           <td>{{ row[6] }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<br>
+<br>
+<p style="font-family:monospace;font-size:30px;text-align:center;">There are no items that have been found at the moment.<br> <br> Click on the button below to add your lost item to the database.</p>
+{% endif %}
 	<div style="text-align:center;margin-top:30px;">
 		<a href="lostfoundAdd.html">
-			<button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;">NOT HERE!</button>
+			<button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;">NOT HERE?</button>
 		</a>
     </body>
 </html>
