@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
     <title>Found!</title>
-    <body>
-        <nav>
-        <ul>
-  <li><a class="active" href="/studentProfile.html">USERPAGE</a></li>
-  <li><a href="/sell.html">SELL</a></li>
-  <li><a href="/borrow.html">BORROW</a></li>
-  <li><a href="/buy.html">BUY</a></li>
-        </ul>
-        </nav>
     <div class="page">
         <div class="container">
           <div class="left" style="top:100px;">
@@ -21,7 +12,7 @@
               <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
             </svg>
             <div class="form" style="top:70px;">
-                <form method="POST" action="/successFoundAdd.html">
+                <form method="POST" action="/submit1">
                   <label for="name">Name of The Item</label>
                   <input type="text" id="name" name="name">
                   <label for="colormodel">Colour/Model</label>
@@ -37,46 +28,9 @@
                 </form>
               </div>
               
-              
-              
         </div>
       </div>
-    </body>
       <style>
-
-        nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 70px;
-    overflow: hidden;
-    background-color: lightblue;
-}
-
-nav li {
-    float: right;
-    padding: left 19px;
-    margin-top: 0 20px;
-}
-
-nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-nav li a:hover {
-    background-color: burlywood;
-}
-body{
-	  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-	  background: linear-gradient(to right, #25c481, #25b7c4);
-	  font-family: 'Roboto', sans-serif;
-	}
         @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
   background: #2D2F36;
@@ -216,6 +170,9 @@ input::-moz-focus-inner {
 }
       </style>
       <script>
+        function updateAction(action) {
+  document.getElementById("action").value = action;
+}
         var current = null;
 document.querySelector('#email').addEventListener('focus', function(e) {
   if (current) current.pause();
@@ -265,9 +222,7 @@ document.querySelector('#submit').addEventListener('focus', function(e) {
     }
   });
 });
-function updateAction(action) {
-  document.getElementById("action").value = action;
-}
+
       </script>
       
 </html>
