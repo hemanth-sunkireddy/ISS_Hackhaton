@@ -1,6 +1,6 @@
 # theRetrieval_Zone@iiit
 
-Welcome to 'theRetrieval_Zone@iiit', where you can find what's lost, borrow what's needed,and buy what's wanted. It is IIIT Hyderabad's Hub for Campus Sharing. 
+Welcome to 'theRetrieval_Zone@iiit', where you can find what you lost, borrow what you need,and buy what what you want. It is IIIT Hyderabad's Hub for Campus Sharing.   
 Our application provides a convenient and efficient way for users to connect and share resources, and helps build a stronger and more collaborative campus community.
 
 Here are some guidelines for operating this app -
