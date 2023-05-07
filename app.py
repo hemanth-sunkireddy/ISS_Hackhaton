@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for, redirect,flash
+from flask import Flask, render_template, request, jsonify, url_for, redirect,flash, make_response
 import sqlite3
 from datetime import datetime
 import os
@@ -41,34 +41,42 @@ def signup():
 
 @app.route('/signin', methods=['POST', 'GET'])
 def signin():
-    if request.method == "POST":
+    error = None
+    if request.method == 'POST':
         student_rollno=request.form['rollNo']
         student_password=request.form['password']
         conn = sqlite3.connect('lfs.db')
         c = conn.cursor()
-        c.execute("DELETE FROM currentuser;")
         c.execute("SELECT * FROM users WHERE ROLLNO = ?", (student_rollno,))
         user = c.fetchone()
         if user is None:
-            flash('Incorrect username.')
-            return render_template('index.html')
-        if student_password == user[2]:
-            # # Password is correct, so store the user's ID in the session
-            # session['user_id'] = user[1]
+            error = 'Incorrect username.'
+            return (render_template('index.html', error=error))
+            
+
+        elif student_password == user[2]:
             c.execute("INSERT INTO currentuser (name, ROLLNO,password,number) VALUES (?, ?,?,?)", (user[0], student_rollno,user[3],student_password))
-            # return redirect(url_for('dashboard'))
+            conn.commit()
+            print("hi")
             return render_template('homepage.html')
         else:
-            # Password is incorrect, so show an error message
-            flash('Incorrect password.')
-            return render_template('index.html')
-        # conn.close()
-        # print(student_password)
-        # print(student_rollno)
+            error = 'Incorrect password.'
+            return (render_template('index.html', error=error))
 
 
 @app.route('/')
 def index3():
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    # c.execute("DELETE FROM currentuser;")
+    return render_template('index.html',error=None)
+
+@app.route('/index.html')
+def index4():
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM currentuser;")
+    conn.commit()
     return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
@@ -79,6 +87,7 @@ def submit():
     action=request.form['action']
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
+    
     c.execute("SELECT * FROM currentuser")
     current_user = c.fetchone()
     rollno = current_user[1]
@@ -216,10 +225,10 @@ def studentProfile():
     c.execute("SELECT * FROM lost WHERE ROLLNO = ? AND status = ?",(unique_rollID, 1))
     found_details = c.fetchall()
 
-    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status = ?",(unique_rollID, 0))
+    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status != ?",(unique_rollID, 1))
     sell_details = c.fetchall()
 
-    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status = ?",(unique_rollID, 1))
+    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status != ?",(unique_rollID, 0))
     buy_details = c.fetchall()
     
     conn.close()
