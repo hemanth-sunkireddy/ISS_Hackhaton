@@ -2,9 +2,10 @@
 <html>
     <head>
         <title>Home</title>
+        <link rel="stylesheet" href="../static/css/navbar.css">
         <style>
              body {
-                background-color: #a5e9c1;
+                background-color: #c9a081;
                 /* background-image: url("https://cdn.pixabay.com/photo/2022/01/17/21/02/pink-6982059_1280.jpg"); */
                 background-size: cover;
                 background-position: center;
@@ -15,8 +16,8 @@
                 /* height: 100vh; */
                 /* overflow: hidden; */
                 font-family: monospace;
-                border-color: black;
-                border-style: solid;
+                /* border-color: black;
+                border-style: solid; */
             }
 
             h1 {
@@ -107,15 +108,33 @@
             .box a:hover {
                 background-color: #a5ffd6;
             }
+            .button-51:hover {
+      background-color: #25c481;
+      color: #fff;
+    }
         </style>
         </style>
        
     </head>
 
     <body>
-        <img src="https://img.collegepravesh.com/2015/09/IIIT-Hyderabad-Logo.png" style="margin-top:30px;margin-bottom:30px;">
+        <ul>
+            <img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
+            <li><a href="/lostView.html">LOST</a></li>
+            <li><a href="/foundView.html" >FOUND</a></li>
+            <li><a href="/sell.html">SELL</a></li>
+            <li><a href="/borrow.html">BORROW</a></li>
+            <li><a href="/buy.html" >BUY</a></li>
+            <li><a href="/studentProfile.html"  >PROFILE</a></li>
+            <li><a href="/homepage.html" a class="active" >HOME</a></li>
+           
+            
+          </ul>
+        <img src="https://img.collegepravesh.com/2015/09/IIIT-Hyderabad-Logo.png" style="margin-top:50px;margin-bottom:50px;">
         <h1 style="text-align:center;margin-bottom:100px;">Welcome to IIITH's Lost, Found and Sell Server!</h1>
-
+        <a href="studentProfile.html">
+            <button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;margin-bottom:30px;font-size:20px;font-family: monospace;;">My Profile!</button>
+          </a>
 
         <div class="box-container">
             <div class="box" style="transform: rotate(0deg);">
