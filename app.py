@@ -177,6 +177,10 @@ def foundView():
 def foundAdd():
     return render_template('lostfoundAdd.html')
 
+
+
+
+
 # @app.route('/lostAdd.html')
 # def lostAdd():
 #     return render_template('lostAdd.html')
