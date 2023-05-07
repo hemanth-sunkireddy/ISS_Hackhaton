@@ -13,6 +13,7 @@ Here are some guidelines for operating this app -
 7. If the student wants to view abut the items they have listed in the past, they can go to the profile page. They can also remove the items they have listed if the purpose of listing them is now fulfilled.
 
 Below is the detailed directory structure for our application: 
+'''
 ├── app.py
 ├── README.md
 ├── static
@@ -32,3 +33,4 @@ Below is the detailed directory structure for our application:
     ├── lostView.html
     ├── sell.html
     └── studentProfile.html
+    '''
