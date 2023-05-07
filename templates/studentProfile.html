@@ -207,44 +207,7 @@
       {% endif %}
       </table>
     </div>
-    
-    <div class="cell" style="background-color:#adcc6e;margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
-      <h1>Items for both Sell and Lend</h1>
-      {% if buy_sell %}
-     <center> 
-      <table border="2" style="border-color:black;"  cellpadding="20">
-        <thead>
-          <th>
-           Name
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Price
-          </th>
-          
-        </thead>
-        <tbody>
-          <tr>
-           {% for buy_sell in buy_sell %}
-          <tr>
-            <td>{{ buy_sell[0] }}</td>
-            <td>{{ buy_sell[1] }}</td>
-            <td>{{ buy_sell[2] }}</td>
-            <td><button class="remove-button" onclick="removeSellLend('{{ buy_sell[0] }}')">Remove</button></td>
-          </tr>
-        {% endfor %}
-          </tr>
-        </tbody>
-      </center>
-      {% else %}
-      <div style="display:flex;justify-content:center;">
-        <p style="font-size: 15px; text-align:center;">Nothing Added Yet!</p>
-      </div>
-  {% endif %}
-      </table>
-    </div>
+
 
 
 </body>
@@ -288,24 +251,6 @@
       });
   }
 
-  function removeSellLend(name) {
-    fetch('/remove-from-sell-lend', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'name': name
-      })
-    })
-    .then(function(response) {
-
-      location.reload(); 
-    })
-    .catch(function(error) {
-      console.error('hiiiii', error);
-    });
-  }
 
 </script>
 
