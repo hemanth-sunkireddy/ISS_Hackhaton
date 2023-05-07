@@ -31,6 +31,13 @@ def signup():
         student_password=request.form['password']
         conn = sqlite3.connect('lfs.db')
         c = conn.cursor()
+        
+        c.execute("SELECT * FROM users WHERE ROLLNO = ?", (student_rollno,))
+        user_exists = c.fetchone()
+        if user_exists:
+            error_message = "Your account already exists, try signing in instead."
+            return render_template('index.html', error=error_message)
+        
         c.execute("DELETE FROM currentuser;")
         c.execute("INSERT INTO users (name, ROLLNO,number,password) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
         c.execute("INSERT INTO currentuser (name, ROLLNO,number,password) VALUES (?, ?,?,?)", (student_name, student_rollno,student_mobile,student_password))
