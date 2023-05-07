@@ -9,16 +9,23 @@
 
 <body>
 
-<header>
-	<h1>
-		Title
-    </h1>
+<header style="height: 120px; background-color: #304d5a;">
+	<!-- <h1>
+		theRetrieval_Zone@iiit
+    </h1> -->
+	<img src="../static/logo.jpeg" style="margin-top: 10px;">
 </header>
 
 
 <!-- <h2>Welcome to IIIT Hyderabad's Lost and Found Portal</h2>
 <br>
 <h3>Enter Your Details To Get Started</h3> -->
+{% if error %}
+<div class="alert-danger">
+    {{ error }}
+</div>
+{% endif %}
+
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
         <form method="POST" action="/signup">
@@ -57,6 +64,7 @@
     <script src="../static/js/index.js">
 
     </script>
+	  
 </body>
 	
 </html>
