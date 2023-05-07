@@ -19,6 +19,15 @@ Here are some guidelines for operating this app -
 7. If the student wants to view abut the items they have listed in the past, they can go to the profile page. They can also remove the items they have listed if the purpose of listing them is now fulfilled.
 
 
+Contribution of Each Member:
+Vasana Srinivasan (2022101023):
+Contributed towards the idea behind the designing of the application and handled the Frontend. Also contributed towards creating the database as well as the backend of the Sell/Lend, Found, and Lost pages.  
+Gargi Shroff (2022114009):
+Contibuted towards managing the database and fitering out the information from the database, as well as the backend of the Sign-in/Sign-Out, Buy/Borrow, Found, Lost, and Home pages. 
+Heamanth Sunkireddy (2022101005):
+Contributed towards the Student Profile Page and Navigation bar, and managing the database. 
+## All the members contributed for deciding the functionality of the application.
+
 The detailed directory structure for our app is as follows:
 ```
 .
