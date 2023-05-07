@@ -205,7 +205,6 @@ def studentProfile():
     unique_rollID = c.fetchone()[1]
     c.execute("SELECT * FROM users WHERE ROLLNO = ?", (unique_rollID,))
     user_details=c.fetchall()
-    print(user_details)
 
     c.execute("SELECT * FROM lost WHERE ROLLNO = ? AND status = ?", (unique_rollID, 0))
     lost_details=c.fetchall()
@@ -233,6 +232,19 @@ def remove_from_sell():
     conn.commit()
     conn.close()
     return jsonify({'success': True})
+
+
+@app.route('/remove-from-lost', methods=['POST'])
+def remove_from_lost():
+    song_id = request.json['name']
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM lost WHERE name=?", (song_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'success': True})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
