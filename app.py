@@ -181,7 +181,7 @@ def borrow():
 def foundView():
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM lost WHERE status != 0")
+    c.execute("SELECT * FROM lost WHERE status != 1")
     rows = c.fetchall()
     conn.close()
     return render_template('foundView.html', rows=rows)
@@ -206,7 +206,7 @@ def foundAdd():
 def lostView():
     conn = sqlite3.connect('lfs.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM lost WHERE status != 1")
+    c.execute("SELECT * FROM lost WHERE status != 0")
     rows = c.fetchall()
     conn.close()
     return render_template('/lostView.html', rows=rows)
