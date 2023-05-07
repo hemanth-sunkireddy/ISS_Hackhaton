@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
     <title>Found!</title>
+    <body>
+        <nav>
+        <ul>
+  <li><a class="active" href="/studentProfile.html">USERPAGE</a></li>
+  <li><a href="/sell.html">SELL</a></li>
+  <li><a href="/borrow.html">BORROW</a></li>
+  <li><a href="/buy.html">BUY</a></li>
+        </ul>
+        </nav>
     <div class="page">
         <div class="container">
           <div class="left" style="top:100px;">
@@ -32,7 +41,42 @@
               
         </div>
       </div>
+    </body>
       <style>
+
+        nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 70px;
+    overflow: hidden;
+    background-color: lightblue;
+}
+
+nav li {
+    float: right;
+    padding: left 19px;
+    margin-top: 0 20px;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav li a:hover {
+    background-color: burlywood;
+}
+body{
+	  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+	  background: linear-gradient(to right, #25c481, #25b7c4);
+	  font-family: 'Roboto', sans-serif;
+	}
         @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
   background: #2D2F36;
