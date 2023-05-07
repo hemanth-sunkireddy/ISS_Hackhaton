@@ -74,6 +74,7 @@
 			
 		  </ul>
        <h1>Items For Hire</h1>
+	   {% if rows %}
 	<table class="playlist">
 		<thead>
 			<tr>
@@ -93,8 +94,12 @@
 					<td>{{ row[5] }}</td>
                     <td>{{ row[6] }}</td>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-    </body>
-</html>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<br>
+	<br>
+		<p style="font-family:monospace;font-size:30px;text-align:center;">No items for hire at the moment!</p>
+	{% endif %}
+	
