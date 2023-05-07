@@ -78,6 +78,7 @@ section{
 		
 	  </ul>
 	<h1>Items For Sale</h1>
+	{% if rows %}
 	<table class="playlist">
 		<thead>
 			<tr>
@@ -102,5 +103,9 @@ section{
 			{% endfor %}
 		</tbody>
 	</table>
-</body>
-</html>
+{% else %}
+<br>
+<br>
+	<p style="font-family:monospace;font-size:30px;text-align:center;">No items for sale at the moment!</p>
+{% endif %}
+
