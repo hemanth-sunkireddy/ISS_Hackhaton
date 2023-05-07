@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Grid Layout Example</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="../static/css/navbar.css">
 </head>
 
@@ -22,6 +22,25 @@
   </ul>
 
   <style>
+    .remove-button {
+      background-color: whitesmoke;
+  color:black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 4px;
+  font-family:monospace;
+}
+
+.remove-button:hover {
+  background-color: #304d5a;
+  color:black;
+}
     body {
       background-color: #D2DAC2;
       overflow-x: hidden;
@@ -47,10 +66,10 @@
 
     <div class="cell"
       style="background-color:#adcc6e;margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
-      <h1>Items Lost!!</h1>
+      <h1>Items Lost</h1>
       {% if lost %}
       <center>
-        <table border="2" style="border-color:black;" cellpadding="20">
+        <table border="2" style="border-color:black;text-align: center;" cellpadding="20">
           <thead style="font-size:20px;">
             <th>
               Name
@@ -62,18 +81,19 @@
               Description
             </th>
             <th>
-              Already Found ?
+              Already Found?
             </th>
 
           </thead>
           <tbody>
-            <tr>
+            <tr style="align-items:center;font-size:15px;">
               {% for lost in lost %}
-            <tr style="font-size:15px;">
+            
               <td>{{ lost[0] }}</td>
               <td>{{ lost[1] }}</td>
               <td>{{ lost[2] }}</td>
-              <td><button class="remove-button" onclick="removeLost('{{ lost[0] }}')">Remove</button></td>
+
+              <td><button class=" button remove-button" onclick="removeLost('{{ lost[0] }}')">Remove</button></td>
 
             </tr>
             {% endfor %}
@@ -90,9 +110,9 @@
 
     <div class="cell"
       style="background-color:#adcc6e; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
-      <h1>Items Found!!</h1>
+      <h1>Items Found</h1>
       <center>
-        <table border="2" style="border-color:black;" cellpadding="20">
+        <table border="2" style="border-color:black;text-align: center;" cellpadding="20">
           {% if found %}
           <thead style="font-size:20px;">
             <th>
@@ -105,16 +125,16 @@
               Description
             </th>
             <th>
-              Reached the Owner ?
+              Reached The Owner?
             </th>
           </thead>
           <tbody>
             {% for found in found %}
-            <tr style="font-size:15px;">
+            <tr style="align-items:center;font-size:15px;">
               <td>{{ found[0] }}</td>
               <td>{{ found[1] }}</td>
               <td>{{ found[2] }}</td>
-              <td><button class="remove-button" onclick="removeLost('{{ found[0] }}')">Remove</button></td>
+              <td><button class="button remove-button" onclick="removeLost('{{ found[0] }}')">Remove</button></td>
 
             </tr>
             {% endfor %}
@@ -130,9 +150,9 @@
 
     <div class="cell"
       style="background-color:#adcc6e; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
-      <h1>Items Up For Sale!!</h1>
+      <h1>Items Up For Sale<h1>
       <center>
-        <table border="2" style="border-color:black;" cellpadding="20">
+        <table border="2" style="border-color:black;text-align: center;" cellpadding="20">
           {% if sell %}
           <thead style="font-size:20px;">
             <th>
@@ -145,16 +165,16 @@
               Price
             </th>
             <th>
-              Sold ?
+              Sold?
             </th>
           </thead>
           <tbody>
             {% for sell in sell %}
-            <tr style="font-size:15px;">
+            <tr style="align-items:center;font-size:15px;">
               <td>{{ sell[0] }}</td>
               <td>{{ sell[1] }}</td>
               <td>{{ sell[2] }}</td>
-              <td><button class="remove-button" onclick="removeSell('{{ sell[0] }}')">Remove</button></td>
+              <td><button class="button remove-button" onclick="removeSell('{{ sell[0] }}')">Remove</button></td>
             </tr>
             {% endfor %}
             </tr>
@@ -172,11 +192,11 @@
     <div class="cell"
       style="background-color:#adcc6e;margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
       <h1>
-        Items Up For Hiring !!
+        Items Up For Hiring
       </h1>
       {% if buy %}
       <center>
-        <table border="2" style="border-color:black;" cellpadding="20">
+        <table border="2" style="border-color:black;text-align: center;" cellpadding="20">
           <thead style="font-size:20px;">
             <th>
               Name
@@ -185,15 +205,19 @@
               Description
             </th>
             <th>
+              Price
+            </th>
+            <th>
               Not Available?
             </th>
           </thead>
           <tbody>
             {% for buy in buy %}
-            <tr style="font-size:15px;">
+            <tr style="align-items:center;font-size:15px;">
               <td>{{ buy[0] }}</td>
               <td>{{ buy[1] }}</td>
-              <td><button class="remove-button" onclick="removeSell('{{ buy[0] }}')">Remove</button></td>
+              <td>{{ buy[2] }}</td>
+              <td><button class="button remove-button" onclick="removeSell('{{ buy[0] }}')">Remove</button></td>
             </tr>
             {% endfor %}
 
@@ -207,7 +231,8 @@
       {% endif %}
       </table>
     </div>
-
+    
+   
 
 
 </body>
@@ -251,6 +276,24 @@
       });
   }
 
+  function removeSellLend(name) {
+    fetch('/remove-from-sell-lend', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': name
+      })
+    })
+    .then(function(response) {
+
+      location.reload(); 
+    })
+    .catch(function(error) {
+      console.error('hiiiii', error);
+    });
+  }
 
 </script>
 
