@@ -13,24 +13,24 @@ Here are some guidelines for operating this app -
 7. If the student wants to view abut the items they have listed in the past, they can go to the profile page. They can also remove the items they have listed if the purpose of listing them is now fulfilled.
 
 Below is the detailed directory structure for our application: 
-'''
-├── app.py
-├── README.md
-├── static
-│   ├── css
-│   │   ├── index.css
-│   │   └── navbar.css
-│   ├── js
-│   │   └── index.js
-│   └── logo.jpeg
-└── templates
-    ├── borrow.html
-    ├── buy.html
-    ├── foundView.html
-    ├── homepage.html
-    ├── index.html
-    ├── lostfoundAdd.html
-    ├── lostView.html
-    ├── sell.html
-    └── studentProfile.html
-    '''
+
+├── app.py  
+├── README.md  
+├── static  
+│   ├── css  
+│   │   ├── index.css  
+│   │   └── navbar.css  
+│   ├── js  
+│   │   └── index.js  
+│   └── logo.jpeg  
+└── templates  
+    ├── borrow.html  
+    ├── buy.html  
+    ├── foundView.html  
+    ├── homepage.html  
+    ├── index.html  
+    ├── lostfoundAdd.html  
+    ├── lostView.html  
+    ├── sell.html  
+    └── studentProfile.html  
+    
