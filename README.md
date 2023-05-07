@@ -1,5 +1,11 @@
 # theRetrieval_Zone@iiit
 
+NOTE: This website must be run on the terminal using the command "python3 app.py". This starts the flask application. The link thus generated directs to the sign-in page from which the user can access all the functionalities of the website.  
+
+
+
+
+
 Welcome to 'theRetrieval_Zone@iiit', where you can find what you lost, borrow what you need,and buy what what you want. It is IIIT Hyderabad's Hub for Campus Sharing.   
 Our application provides a convenient and efficient way for users to connect and share resources, and helps build a stronger and more collaborative campus community.
 
