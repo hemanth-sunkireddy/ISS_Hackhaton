@@ -19,27 +19,33 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 70px;
+    height: 120px;
     overflow: hidden;
-    background-color: lightblue;
+    background-color: #304d5a;
 }
 
 li {
     float: right;
     padding: left 19px;
     margin-top: 0 20px;
+    color: whitesmoke;
 }
 
 li a {
     display: block;
-    color: white;
+    color: whitesmoke;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 25px;
+    font-family: monospace;
     font-weight: bold;
+    margin-top:30px;
 }
-
+li a.active {
+    background-color: black;
+  }
+  
 li a:hover {
-    background-color: burlywood;
+    background-color: rgb(33, 110, 141);
 }
