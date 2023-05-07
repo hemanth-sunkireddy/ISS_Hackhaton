@@ -24,7 +24,6 @@ The detailed directory structure for our app is as follows:
 .
 └── ISS_Hackhaton-main
     ├── app.py
-    ├── lfs.db
     ├── README.md
     ├── static
     │   ├── css
