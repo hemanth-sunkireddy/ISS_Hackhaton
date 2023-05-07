@@ -190,8 +190,35 @@ def home():
     return render_template('homepage.html')
 
 @app.route('/studentProfile.html')
-def profile():
-    return render_template('studentProfile.html')
+def studentProfile():
+
+    conn = sqlite3.connect('lfs.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM currentuser")
+    unique_rollID = c.fetchone()[2]
+    c.execute("SELECT * FROM users WHERE ROLLNO = ?", (unique_rollID,))
+    user_details=c.fetchall()
+    print(user_details)
+
+    c.execute("SELECT * FROM lost WHERE ROLLNO = ? AND status = ?", (unique_rollID, 0))
+    lost_details=c.fetchall()
+
+    c.execute("SELECT * FROM lost WHERE ROLLNO = ? AND status = ?",(unique_rollID, 1))
+    found_details = c.fetchall()
+
+    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status = ?",(unique_rollID, 0))
+    sell_details = c.fetchall()
+
+    c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status = ?",(unique_rollID, 1))
+    buy_details = c.fetchall()
+    
+    conn.close()
+    return render_template('studentProfile.html', user=user_details, lost=lost_details, found=found_details, sell=sell_details, buy=buy_details)
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
