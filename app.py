@@ -147,9 +147,6 @@ def submit2():
 
 
 
-
-
-
 # Form for adding the items to sell
 @app.route('/sell.html')
 def sell():
