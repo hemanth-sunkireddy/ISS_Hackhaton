@@ -16,16 +16,16 @@
   
 </ul>
 
-  <div class="cell" style="margin-top:130px; margin-bottom:50px; width:50%; margin-left:20%;"> 
+  <div class="cell" style="margin-top:130px; margin-bottom:50px; width:50%; margin-left:20%;font-family: monospace;"> 
       <h1>
         Student Details
       </h1>
       
            {% for user in user %}
           
-            <h2>Student Name: {{user[0]}}</h2>
-            <h2> Student Roll Number:{{ user[1] }}</h2>
-            <h2>Student Mobile Number: {{ user[3] }}</h2>
+            <h2>Name : {{user[0]}}</h2>
+            <h2>Roll Number : {{ user[1] }}</h2>
+            <h2>Mobile Number : {{ user[3] }}</h2>
           
         {% endfor %}
             
@@ -33,9 +33,11 @@
   
 	<div class="container">
     
-		<div class="cell" style="background-color: aquamarine; margin-top:50px; margin-right:20px; margin-left:20px;">
-      <h1>Student Lost Items posted</h1>
-     <center> <table border="2" cellpadding="20">
+		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
+      <h1>Items Lost</h1>
+      {% if lost %}
+     <center> 
+      <table border="2" cellpadding="20">
         <thead>
           <th>
            Name
@@ -55,42 +57,71 @@
             <td>{{ lost[0] }}</td>
             <td>{{ lost[1] }}</td>
             <td>{{ lost[2] }}</td>
+            <td><button class="remove-button" onclick="removeLost('{{ lost[0] }}')">Remove</button></td>
             
           </tr>
         {% endfor %}
           </tr>
         </tbody>
       </center>
+      {% else %}
+    <p style="font-size: 15px;">Nothing Added Yet!</p>
+  {% endif %}
       </table>
     </div>
-    <div class="cell" style="background-color: aquamarine; margin-top:50px; margin-right:20px; margin-left:20px;">
-      <h1>Student Found items posted</h1>
+
+
+
+    <div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;">
+      <h1>Items Found</h1>
      <center> <table border="2" cellpadding="20" >
+      {% if found %}
         <thead>
           <th>
             Name
           </th>
           <th>
-            color model
+            Color/Model
           </th>
           <th>
             Description
           </th>
         </thead>
         <tbody>
-          {% for post in post %}
+          {% for found in found %}
           <tr>
-            <td>{{ post[0] }}</td>
-            <td>{{ post[1] }}</td>
-            <td>{{ post[2] }}</td>
+            <td>{{ found[0] }}</td>
+            <td>{{ found[1] }}</td>
+            <td>{{ found[2] }}</td>
+            <td><button class="remove-button" onclick="removeLost('{{ found[0] }}')">Remove</button></td>
+
           </tr>
           {% endfor %}
         </tbody>
-     </table> </center></div>
+  </center>
+  {% else %}
+<p style="font-size: 15px;">Nothing Added Yet!</p>
+{% endif %}
+</table> 
+    </div>
      
-		<div class="cell" style="background-color: aquamarine; margin-top:50px; margin-right:20px; margin-left:20px;"> 
-      <h1>Student Sell items posted</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
+      <h1>Items Up For Sale</h1>
      <center> <table border="2" cellpadding="20">
+      {% if sell %}
         <thead>
           <th>
             Name
@@ -103,22 +134,29 @@
           </th>
         </thead>
         <tbody>
-          {% for sell in sell %}
-          <tr>
-            <td>{{ sell[0] }}</td>
-            <td>{{ sell[1] }}</td>
-            <td>{{ sell[2] }}</td>
+            {% for sell in sell %}
+            <tr>
+              <td>{{ sell[0] }}</td>
+              <td>{{ sell[1] }}</td>
+              <td>{{ sell[2] }}</td>
+              <td><button class="remove-button" onclick="removeSell('{{ sell[0] }}')">Remove</button></td>
+            </tr>
+          {% endfor %}
           </tr>
-        {% endfor %}
         </tbody>
-      </table>
-    </center>
+      
+    </center>  
+    {% else %}
+    <p style="font-size: 15px;">Nothing Added Yet!</p>
+    {% endif %}
+  </table>
     </div>
     
-		<div class="cell" style="background-color: aquamarine; margin-top:50px; margin-right:20px; margin-left:20px;"> 
+		<div class="cell" style="background-color: lightblue; margin-top:50px; margin-right:20px; margin-left:20px;font-family: monospace;"> 
       <h1>
-        Student Buy items posted
+        Items Up For Hire
       </h1>
+      {% if buy %}
       <center>
       <table border="2" cellpadding="20">
         <thead>
@@ -128,25 +166,74 @@
           <th>
             Description
           </th>
-          <th>
-            Price
-          </th>
         </thead>
         <tbody>
            {% for buy in buy %}
           <tr>
             <td>{{ buy[0] }}</td>
             <td>{{ buy[1] }}</td>
-            <td>{{ buy[2] }}</td>
+            <td><button class="remove-button" onclick="removeSell('{{ buy[0] }}')">Remove</button></td>
           </tr>
         {% endfor %}
             
         </tbody>
-      </table>
+      
       </center>
+      {% else %}
+      <p style="font-size: 15px;">Nothing Added Yet!</p>
+      {% endif %}
+    </table>
     </div>
-	</div>
+	
+
+
+
+
+
+
+
 </body>
+<script>
+  function removeSell(name) {
+    fetch('/remove-from-sell', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': name
+      })
+    })
+    .then(function(response) {
+
+      location.reload(); 
+    })
+    .catch(function(error) {
+      console.error('hiiiii', error);
+    });
+  }
+
+
+  function removeLost(name) {
+    fetch('/remove-from-lost', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': name
+      })
+    })
+    .then(function(response) {
+
+      location.reload(); 
+    })
+    .catch(function(error) {
+      console.error('hiiiii', error);
+    });
+  }
+
+</script>
 </html>
 
 
