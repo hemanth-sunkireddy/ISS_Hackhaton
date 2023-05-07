@@ -1,119 +1,120 @@
 
 <html>
 
-  <body>
-	<link rel="stylesheet" href="../static/css/navbar.css">
-    <style>
-			h1{
-	  font-size: 90px;
-	  color: black;
-	  border-color: #fff;
-	  border-style: solid;
-	  text-transform: uppercase;
-	  font-weight: 300;
-	  text-align: center;
-	  margin-bottom: 15px;
-	  font-family: monospace;
-	}
-	table{
-	  width:100%;
-	  table-layout: fixed;
-	  font-family: monospace;
-	}
-	.tbl-header{
-	  background-color: black;
-	 }
-	.tbl-content{
-	  height:300px;
-	  overflow-x:auto;
-	  margin-top: 0px;
-	  border: 8px solid black;
-	}
-	th{
-	  padding: 20px 15px;
-	  text-align: center;
-	  font-weight: 500;
-	  font-size: 31px;
-	  color: black;
-	  text-transform: uppercase;
-	}
-	td{
-	  padding: 15px;
-	  text-align: center;
-	  vertical-align:middle;
-	  font-weight: 300;
-	  font-size: 23px;
-	  color: black;
-	  border-bottom: solid 8px rgba(255,255,255,0.1);
-	}
-	
-	
-	body{
-	background-color:#D2DAC2;
-	overflow-x: hidden;
-}
-
-
-	section{
-	  margin: 50px;
-	}
-  .button-51:hover {
-	
-      background-color: #25c481;
-      color: #fff;
-    }
-	
-		</style>
-		<ul>
-			<img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
-			<li><a href="/index.html">SIGN OUT</a></li>
-			<li><a href="/lostView.html">LOST</a></li>
-			<li><a href="/foundView.html" a class="active">FOUND</a></li>
-			<li><a href="/sell.html">SELL</a></li>
-			<li><a href="/borrow.html">BORROW</a></li>
-			<li><a href="/buy.html" >BUY</a></li>
-			<li><a href="/studentProfile.html"  >PROFILE</a></li>
-			<li><a href="/homepage.html" >HOME</a></li>
-		   
-			
-		  </ul>
-    <h1>Items That Have Been Found</h1>
-	{% if rows %}
-    <table class="playlist">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Colour / Model</th>
-          <th>Description</th>
-          <th>Owner's Id</th>
-          <th>Owner's Name</th>
-          <th>Contact No.</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in rows %}
-        <tr>
-          <td>{{ row[0] }}</td>
-          <td>{{ row[1] }}</td>
-          <td>{{ row[2] }}</td>
-          <td>{{ row[4] }}</td>
-          <td>{{ row[5] }}</td>
-          <td>{{ row[6] }}</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
-{% else %}
-<br>
-<br>
-<p style="font-family:monospace;font-size:30px;text-align:center;">There are no items that students have lost at the moment.<br> <br> Click on the button below to add the item you found to the database.</p>
-{% endif %}
-    <div style="text-align:center;margin-top:30px;">
-      <a href="lostfoundAdd.html">
-        <button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;">NOT HERE!</button>
-      </a>
-    </div>
-    
-  </body>
+	<body>
+	  <link rel="stylesheet" href="../static/css/navbar.css">
+	  <style>
+			  h1{
+		font-size: 90px;
+		color: black;
+		border-color: #fff;
+		border-style: solid;
+		text-transform: uppercase;
+		font-weight: 300;
+		text-align: center;
+		margin-bottom: 15px;
+		font-family: monospace;
+	  }
+	  table{
+		width:100%;
+		table-layout: fixed;
+		font-family: monospace;
+	  }
+	  .tbl-header{
+		background-color: black;
+	   }
+	  .tbl-content{
+		height:300px;
+		overflow-x:auto;
+		margin-top: 0px;
+		border: 8px solid black;
+	  }
+	  th{
+		padding: 20px 15px;
+		text-align: center;
+		font-weight: 500;
+		font-size: 31px;
+		color: black;
+		text-transform: uppercase;
+	  }
+	  td{
+		padding: 15px;
+		text-align: center;
+		vertical-align:middle;
+		font-weight: 300;
+		font-size: 23px;
+		color: black;
+		border-bottom: solid 8px rgba(255,255,255,0.1);
+	  }
+	  
+	  
+	  body{
+	  background-color:#D2DAC2;
+	  overflow-x: hidden;
+  }
   
-  </html>
+  
+	  section{
+		margin: 50px;
+	  }
+	.button-51:hover {
+	  
+		background-color: #25c481;
+		color: #fff;
+	  }
+	  
+		  </style>
+		  <ul>
+			  <img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
+			  <li><a href="/index.html">SIGN OUT</a></li>
+			  <li><a href="/lostView.html">LOST</a></li>
+			  <li><a href="/foundView.html" a class="active">FOUND</a></li>
+			  <li><a href="/sell.html">SELL</a></li>
+			  <li><a href="/borrow.html">BORROW</a></li>
+			  <li><a href="/buy.html" >BUY</a></li>
+			  <li><a href="/studentProfile.html"  >PROFILE</a></li>
+			  <li><a href="/homepage.html" >HOME</a></li>
+			 
+			  
+			</ul>
+	  <h1>Items That Have Been Lost</h1>
+	  {% if rows %}
+	  <table class="playlist">
+		<thead>
+		  <tr>
+			<th>Name</th>
+			<th>Colour / Model</th>
+			<th>Description</th>
+			<th>Owner's Id</th>
+			<th>Owner's Name</th>
+			<th>Contact No.</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for row in rows %}
+		  <tr>
+			<td>{{ row[0] }}</td>
+			<td>{{ row[1] }}</td>
+			<td>{{ row[2] }}</td>
+			<td>{{ row[4] }}</td>
+			<td>{{ row[5] }}</td>
+			<td>{{ row[6] }}</td>
+		  </tr>
+		  {% endfor %}
+	  </tbody>
+  </table>
+  {% else %}
+  <br>
+  <br>
+  <p style="font-family:monospace;font-size:30px;text-align:center;">There are no items that students have lost at the moment.<br> <br> Click on the button below to add the item you found to the database.</p>
+  {% endif %}
+	  <div style="text-align:center;margin-top:30px;">
+		<a href="lostfoundAdd.html">
+		  <button class="button-51" role="button" style="height:50px;width:150px;background-color:#25c481;">NOT HERE!</button>
+		</a>
+	  </div>
+	  
+	</body>
+	
+	</html>
+  
