@@ -3,7 +3,14 @@
 * {
     box-sizing: border-box;
 }
-
+.alert-danger {
+    /* add your styles here */
+    color: red;
+    background-color: yellow;
+    font-size: 18px;
+    padding: 10px;
+  }
+  
 body {
     background: #f6f5f7;
     display: flex;
