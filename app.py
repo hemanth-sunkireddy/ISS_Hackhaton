@@ -231,6 +231,7 @@ def studentProfile():
     c.execute("SELECT * FROM sale WHERE ROLLNO = ? AND status != ?",(unique_rollID, 0))
     buy_details = c.fetchall()
     
+    
     conn.close()
     return render_template('studentProfile.html', user=user_details, lost=lost_details, found=found_details, sell=sell_details, buy=buy_details)
 
@@ -258,15 +259,7 @@ def remove_from_lost():
     return jsonify({'success': True})
 
 
-@app.route('/remove-from-sell-lend', methods=['POST'])
-def remove_from_sale_lend():
-    song_id = request.json['name']
-    conn = sqlite3.connect('lfs.db')
-    c = conn.cursor()
-    c.execute("DELETE FROM sale WHERE name=?", (song_id,))
-    conn.commit()
-    conn.close()
-    return jsonify({'success': True})
+
 
 
 if __name__ == '__main__':
