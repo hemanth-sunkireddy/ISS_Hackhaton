@@ -51,6 +51,7 @@ td{
 
 body{
 	background-color:#D2DAC2;
+	overflow-x: hidden;
 }
 
 
@@ -67,6 +68,7 @@ section{
 <body>
 	<ul>
 		<img src="../static/logo.jpeg" style="margin-top:10px;margin-left:10px;">
+		<li><a href="/index.html">SIGN OUT</a></li>
 		<li><a href="/lostView.html">LOST</a></li>
 		<li><a href="/foundView.html">FOUND</a></li>
 		<li><a href="/sell.html">SELL</a></li>
@@ -100,12 +102,13 @@ section{
 					<td>{{ row[5] }}</td>
 					<td>{{ row[6] }}</td>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-{% else %}
-<br>
-<br>
-	<p style="font-family:monospace;font-size:30px;text-align:center;">No items for sale at the moment!</p>
-{% endif %}
-
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<br>
+	<br>
+		<p style="font-family:monospace;font-size:30px;text-align:center;">No items for sale at the moment!</p>
+	{% endif %}
+</body>
+</html>
